@@ -2,7 +2,7 @@
 import spacy
 import pickle
 import random
-import PyMuPDF
+
 
 # Need to get about 200 + resumes of sample data to train with
 
@@ -54,3 +54,25 @@ for ent in doc.ents:
   print(ent.text, ent.label_)
 
 # Once we train and save our model, we can use it on our own resume
+
+
+# Importing and parsing our own resume
+import sys, fitz
+import PyMuPDF
+
+fname = 'Nicholas Sabadicci Resume.pdf'
+doc = fitz.open(fname)
+text = ''
+
+for page in doc:
+  text += page.getText() + str(page.getText())
+
+print(text)
+
+tx = ' '.join(text.split('\n'))
+print(text)
+
+doc = nlp_model(tx)
+for ent in doc.ents:
+  print(f'{ent.label.upper():{30}}-{ent.text}')
+
