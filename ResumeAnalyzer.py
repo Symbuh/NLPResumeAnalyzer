@@ -2,6 +2,7 @@
 import spacy
 import pickle
 import random
+import PyMuPDF
 
 # Need to get about 200 + resumes of sample data to train with
 
@@ -43,3 +44,13 @@ def train_model(train_data):
 
 train_model(train_data)
 
+# Preconfigured Spacy model
+nlp_model = spacy.load('nlp_model')
+
+doc = nlp_model(train_data[0][0])
+
+# Prints a demonstration of output
+for ent in doc.ents:
+  print(ent.text, ent.label_)
+
+# Once we train and save our model, we can use it on our own resume
